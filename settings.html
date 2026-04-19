@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | Hossam Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .server-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .server-option{position:relative}
+    .server-option input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+    .server-label{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:10px;padding:20px 14px;border-radius:12px;border:1px solid var(--border);
+      background:var(--bg-card2);cursor:pointer;transition:all 0.2s;text-align:center;
+    }
+    .server-label i{font-size:22px;color:var(--text-muted);transition:color 0.2s}
+    .server-label span{font-size:13px;font-weight:600;color:var(--text-soft)}
+    .server-option input:checked + .server-label{border-color:var(--accent);background:var(--accent-glow)}
+    .server-option input:checked + .server-label i{color:var(--accent2)}
+    .server-option input:checked + .server-label span{color:var(--accent2)}
+    .social-input-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:10px 14px;background:var(--bg-card2);border:1px solid var(--border);border-radius:10px;transition:border 0.2s}
+    .social-input-row:focus-within{border-color:var(--accent)}
+    .social-input-row i{font-size:16px;width:20px;text-align:center;color:var(--text-muted)}
+    .social-input-row input{flex:1;background:transparent;border:none;color:var(--text);font-size:14px;font-family:inherit;outline:none}
+    .social-input-row input::placeholder{color:var(--text-muted)}
+    .widget-check{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer}
+    .widget-check:last-child{border-bottom:none;padding-bottom:0}
+    .widget-check input{display:none}
+    .custom-checkbox{width:18px;height:18px;border-radius:5px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+    .widget-check input:checked ~ .custom-checkbox{background:var(--accent);border-color:var(--accent)}
+    .widget-check input:checked ~ .custom-checkbox::after{content:'✓';font-size:11px;color:#fff;font-weight:700}
+    .radio-opt{display:flex;align-items:center;gap:10px;padding:10px 0;cursor:pointer}
+    .radio-opt input{display:none}
+    .custom-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;transition:all 0.2s;position:relative}
+    .radio-opt input:checked ~ .custom-radio{border-color:var(--accent)}
+    .radio-opt input:checked ~ .custom-radio::after{content:'';position:absolute;width:8px;height:8px;border-radius:50%;background:var(--accent);top:50%;left:50%;transform:translate(-50%,-50%)}
+    .save-bar{display:flex;justify-content:flex-end;gap:12px;padding-top:20px;border-top:1px solid var(--border);margin-top:4px}
+    @media(max-width:900px){.settings-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">H</div>
+      <span class="brand-name">Hos<span>.</span>dev</span>
+    </div>
+    <div class="nav-label">Main</div>
+    <a href="index.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+    <a href="settings.html" class="nav-item active"><i class="fas fa-cog"></i><span>Settings</span></a>
+    <a href="profile.html" class="nav-item"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+    <a href="projects.html" class="nav-item"><i class="fas fa-tasks"></i><span>Projects</span><span class="nav-badge">6</span></a>
+    <div class="nav-label" style="margin-top:20px">Content</div>
+    <a href="courses.html" class="nav-item"><i class="fab fa-discourse"></i><span>Courses</span></a>
+    <a href="friends.html" class="nav-item"><i class="fas fa-users"></i><span>Friends</span></a>
+    <a href="files.html" class="nav-item"><i class="far fa-file"></i><span>Files</span></a>
+    <a href="plans.html" class="nav-item"><i class="fas fa-globe-americas"></i><span>Plans</span></a>
+    <div class="sidebar-bottom">
+      <div class="user-mini">
+        <img src="image/avatar.png" alt="Hossam">
+        <div class="user-mini-info"><span>Hossam</span><small>Developer</small></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="page-title">Settings</div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="search-wrap"><i class="fas fa-search"></i><input type="search" placeholder="Type a keyword…"></div>
+        <div class="topbar-actions">
+          <div class="icon-btn"><i class="fas fa-bell" style="font-size:14px"></i><span class="notif-dot"></span></div>
+          <div class="avatar-btn"><img src="image/avatar.png" alt=""></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="settings-grid">
+
+        <!-- SITE CONTROL -->
+        <div class="card">
+          <div class="card-title">Site Control</div>
+          <div class="card-sub">Manage website maintenance mode</div>
+          <div class="toggle-wrap">
+            <div class="toggle-info"><h4>Website Status</h4><p>Open and close the website for visitors</p></div>
+            <label class="toggle"><input type="checkbox" checked><div class="toggle-slider"></div></label>
+          </div>
+          <div style="margin-top:14px">
+            <label class="form-label">Maintenance Message</label>
+            <textarea class="form-input" rows="3" placeholder="Message shown when site is closed…"></textarea>
+          </div>
+          <div class="save-bar"><button class="btn-primary"><i class="fas fa-save" style="margin-right:7px"></i>Save Changes</button></div>
+        </div>
+
+        <!-- GENERAL INFO -->
+        <div class="card">
+          <div class="card-title">General Information</div>
+          <div class="card-sub">Update your account details</div>
+          <div style="margin-bottom:14px">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" placeholder="First name">
+          </div>
+          <div style="margin-bottom:14px">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" placeholder="Last name">
+          </div>
+          <div>
+            <label class="form-label">Email Address</label>
+            <div style="display:flex;gap:10px;align-items:center">
+              <input class="form-input" type="email" value="7os@gmail.com" disabled style="flex:1;opacity:0.6">
+              <button class="btn-primary" style="padding:10px 16px;white-space:nowrap">Change</button>
+            </div>
+          </div>
+          <div class="save-bar"><button class="btn-primary"><i class="fas fa-save" style="margin-right:7px"></i>Save Changes</button></div>
+        </div>
+
+        <!-- SECURITY -->
+        <div class="card">
+          <div class="card-title">Security Information</div>
+          <div class="card-sub">Protect your account</div>
+          <div class="toggle-wrap">
+            <div class="toggle-info"><h4>Password</h4><p>Last changed on 1/1/2023</p></div>
+            <button class="btn-secondary">Change</button>
+          </div>
+          <div class="toggle-wrap">
+            <div class="toggle-info"><h4>Two-Factor Authentication</h4><p>Enable/Disable 2FA for extra security</p></div>
+            <label class="toggle"><input type="checkbox" checked><div class="toggle-slider"></div></label>
+          </div>
+          <div class="toggle-wrap">
+            <div class="toggle-info"><h4>Login Devices</h4><p>Check the list of devices logged in</p></div>
+            <button class="btn-secondary">View Devices</button>
+          </div>
+        </div>
+
+        <!-- SOCIAL MEDIA -->
+        <div class="card">
+          <div class="card-title">Social Media</div>
+          <div class="card-sub">Link your social profiles</div>
+          <div class="social-input-row" style="color:#1da1f2">
+            <i class="fab fa-twitter"></i>
+            <input type="text" placeholder="Twitter username">
+          </div>
+          <div class="social-input-row" style="color:#4267b2">
+            <i class="fab fa-facebook"></i>
+            <input type="text" placeholder="Facebook username">
+          </div>
+          <div class="social-input-row" style="color:#e1306c">
+            <i class="fab fa-instagram"></i>
+            <input type="text" placeholder="Instagram username">
+          </div>
+          <div class="social-input-row" style="color:#0077b5">
+            <i class="fab fa-linkedin-in"></i>
+            <input type="text" placeholder="LinkedIn username">
+          </div>
+          <div class="save-bar"><button class="btn-primary"><i class="fas fa-save" style="margin-right:7px"></i>Save</button></div>
+        </div>
+
+        <!-- WIDGETS CONTROL -->
+        <div class="card">
+          <div class="card-title">Widgets Control</div>
+          <div class="card-sub">Show or hide dashboard widgets</div>
+          <label class="widget-check"><input type="checkbox"><div class="custom-checkbox"></div><span style="font-size:14px;font-weight:500">Quick Draft</span></label>
+          <label class="widget-check"><input type="checkbox" checked><div class="custom-checkbox"></div><span style="font-size:14px;font-weight:500">Yearly Targets</span></label>
+          <label class="widget-check"><input type="checkbox"><div class="custom-checkbox"></div><span style="font-size:14px;font-weight:500">Ticket Statistics</span></label>
+          <label class="widget-check"><input type="checkbox" checked><div class="custom-checkbox"></div><span style="font-size:14px;font-weight:500">Latest News</span></label>
+          <label class="widget-check"><input type="checkbox" checked><div class="custom-checkbox"></div><span style="font-size:14px;font-weight:500">Top Search Items</span></label>
+        </div>
+
+        <!-- BACKUP MANAGER -->
+        <div class="card">
+          <div class="card-title">Backup Manager</div>
+          <div class="card-sub">Control backup schedule and storage</div>
+          <div style="margin-bottom:16px">
+            <div style="font-size:12px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Frequency</div>
+            <label class="radio-opt"><input type="radio" name="freq" checked><div class="custom-radio"></div><span style="font-size:14px;font-weight:500">Daily</span></label>
+            <label class="radio-opt"><input type="radio" name="freq"><div class="custom-radio"></div><span style="font-size:14px;font-weight:500">Weekly</span></label>
+            <label class="radio-opt"><input type="radio" name="freq"><div class="custom-radio"></div><span style="font-size:14px;font-weight:500">Monthly</span></label>
+          </div>
+          <div style="font-size:12px;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Server</div>
+          <div class="server-grid">
+            <div class="server-option"><input type="radio" name="server" id="s1"><label class="server-label" for="s1"><i class="fas fa-server"></i><span>Megaman</span></label></div>
+            <div class="server-option"><input type="radio" name="server" id="s2"><label class="server-label" for="s2"><i class="fas fa-server"></i><span>Zero</span></label></div>
+            <div class="server-option"><input type="radio" name="server" id="s3" checked><label class="server-label" for="s3"><i class="fas fa-server"></i><span>Sigma</span></label></div>
+          </div>
+          <div class="save-bar"><button class="btn-primary"><i class="fas fa-save" style="margin-right:7px"></i>Save</button></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.widget-check').forEach(w=>{
+    w.addEventListener('click',()=>{
+      const inp=w.querySelector('input');
+      setTimeout(()=>{
+        const cb=w.querySelector('.custom-checkbox');
+        cb.innerHTML=inp.checked?'<span style="font-size:11px;color:#fff;font-weight:700">✓</span>':'';
+      },0);
+    });
+  });
+</script>
+</body>
+</html>

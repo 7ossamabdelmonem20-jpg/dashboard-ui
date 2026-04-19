@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Hossam Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+    .project-card{
+      background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+      overflow:hidden;transition:all 0.25s;
+    }
+    .project-card:hover{transform:translateY(-3px);border-color:rgba(99,102,241,0.3);box-shadow:0 8px 32px rgba(0,0,0,0.4)}
+    .project-card-top{padding:20px 20px 14px}
+    .project-date{font-size:11px;color:var(--text-muted);margin-bottom:10px;display:flex;align-items:center;gap:5px}
+    .project-title{font-size:16px;font-weight:700;margin-bottom:8px}
+    .project-desc{font-size:13px;color:var(--text-soft);line-height:1.6;margin-bottom:14px}
+    .project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+    .project-tag{
+      font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;
+      background:var(--bg-card2);border:1px solid var(--border);color:var(--text-muted);
+    }
+    .project-team{display:flex;align-items:center;margin-bottom:14px}
+    .project-team img{width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid var(--bg-card);margin-left:-6px}
+    .project-team img:first-child{margin-left:0}
+    .project-card-footer{
+      padding:14px 20px;border-top:1px solid var(--border);
+      display:flex;align-items:center;justify-content:space-between;
+      background:var(--bg-card2);
+    }
+    .project-progress-wrap{flex:1;margin-right:16px}
+    .project-progress-label{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:5px}
+    .project-price{font-size:14px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:4px;white-space:nowrap}
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">H</div>
+      <span class="brand-name">Hos<span>.</span>dev</span>
+    </div>
+    <div class="nav-label">Main</div>
+    <a href="index.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+    <a href="settings.html" class="nav-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+    <a href="profile.html" class="nav-item"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+    <a href="projects.html" class="nav-item active"><i class="fas fa-tasks"></i><span>Projects</span><span class="nav-badge">6</span></a>
+    <div class="nav-label" style="margin-top:20px">Content</div>
+    <a href="courses.html" class="nav-item"><i class="fab fa-discourse"></i><span>Courses</span></a>
+    <a href="friends.html" class="nav-item"><i class="fas fa-users"></i><span>Friends</span></a>
+    <a href="files.html" class="nav-item"><i class="far fa-file"></i><span>Files</span></a>
+    <a href="plans.html" class="nav-item"><i class="fas fa-globe-americas"></i><span>Plans</span></a>
+    <div class="sidebar-bottom">
+      <div class="user-mini">
+        <img src="image/avatar.png" alt="Hossam">
+        <div class="user-mini-info"><span>Hossam</span><small>Developer</small></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="page-title">Projects</div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="search-wrap"><i class="fas fa-search"></i><input type="search" placeholder="Search projects…"></div>
+        <div class="topbar-actions">
+          <div class="icon-btn"><i class="fas fa-bell" style="font-size:14px"></i><span class="notif-dot"></span></div>
+          <div class="avatar-btn"><img src="image/avatar.png" alt=""></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="section-header">
+        <div>
+          <h2 style="font-size:18px;font-weight:700;margin-bottom:2px">All Projects</h2>
+          <p style="font-size:13px;color:var(--text-muted)">6 total projects</p>
+        </div>
+        <button class="btn-primary"><i class="fas fa-plus" style="margin-right:8px"></i>New Project</button>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <div class="project-date"><i class="far fa-calendar"></i> 20/10/2024</div>
+            <div class="project-title">Hossam Dashboard</div>
+            <div class="project-desc">Dashboard project design, programming and hosting for full-featured admin panel.</div>
+            <div class="project-tags">
+              <span class="project-tag">Programming</span>
+              <span class="project-tag">Design</span>
+              <span class="project-tag">Hosting</span>
+              <span class="project-tag">Marketing</span>
+            </div>
+            <div class="project-team">
+              <img src="image/team-01.png"><img src="image/team-02.png"><img src="image/team-03.png"><img src="image/team-04.png"><img src="image/team-05.png">
+              <span style="font-size:12px;color:var(--text-muted);margin-left:10px">5 members</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <div class="project-progress-wrap">
+              <div class="project-progress-label"><span>Progress</span><span style="color:var(--red);font-weight:700">70%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:70%;background:var(--red)"></div></div>
+            </div>
+            <div class="project-price"><i class="fas fa-dollar-sign"></i>250</div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <div class="project-date"><i class="far fa-calendar"></i> 15/6/2022</div>
+            <div class="project-title">Academy Portal</div>
+            <div class="project-desc">Academy portal project design and programming for educational platform.</div>
+            <div class="project-tags">
+              <span class="project-tag">Programming</span>
+              <span class="project-tag">Design</span>
+            </div>
+            <div class="project-team">
+              <img src="image/team-01.png"><img src="image/team-02.png"><img src="image/team-03.png">
+              <span style="font-size:12px;color:var(--text-muted);margin-left:10px">3 members</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <div class="project-progress-wrap">
+              <div class="project-progress-label"><span>Progress</span><span style="color:var(--green);font-weight:700">80%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:80%;background:var(--green)"></div></div>
+            </div>
+            <div class="project-price"><i class="fas fa-dollar-sign"></i>1,800</div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <div class="project-date"><i class="far fa-calendar"></i> 15/6/2022</div>
+            <div class="project-title">Chatting Application</div>
+            <div class="project-desc">Real-time chat application design with modern UI/UX and responsive layout.</div>
+            <div class="project-tags">
+              <span class="project-tag">Design</span>
+            </div>
+            <div class="project-team">
+              <img src="image/team-01.png"><img src="image/team-02.png"><img src="image/team-03.png">
+              <span style="font-size:12px;color:var(--text-muted);margin-left:10px">3 members</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <div class="project-progress-wrap">
+              <div class="project-progress-label"><span>Progress</span><span style="color:var(--blue);font-weight:700">100%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:100%;background:var(--blue)"></div></div>
+            </div>
+            <div class="project-price"><i class="fas fa-dollar-sign"></i>950</div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <div class="project-date"><i class="far fa-calendar"></i> 15/6/2022</div>
+            <div class="project-title">Ahmed Dashboard</div>
+            <div class="project-desc">Complete admin dashboard project with design, programming, hosting and marketing.</div>
+            <div class="project-tags">
+              <span class="project-tag">Programming</span>
+              <span class="project-tag">Design</span>
+              <span class="project-tag">Hosting</span>
+              <span class="project-tag">Marketing</span>
+            </div>
+            <div class="project-team">
+              <img src="image/team-01.png"><img src="image/team-02.png"><img src="image/team-03.png"><img src="image/team-04.png">
+              <span style="font-size:12px;color:var(--text-muted);margin-left:10px">4 members</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <div class="project-progress-wrap">
+              <div class="project-progress-label"><span>Progress</span><span style="color:var(--green);font-weight:700">60%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:60%;background:var(--green)"></div></div>
+            </div>
+            <div class="project-price"><i class="fas fa-dollar-sign"></i>1,700</div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <div class="project-date"><i class="far fa-calendar"></i> 15/6/2022</div>
+            <div class="project-title">Ahmed Portal</div>
+            <div class="project-desc">Web portal project with full-stack development including design and programming.</div>
+            <div class="project-tags">
+              <span class="project-tag">Programming</span>
+              <span class="project-tag">Design</span>
+            </div>
+            <div class="project-team">
+              <img src="image/team-01.png"><img src="image/team-02.png"><img src="image/team-03.png">
+              <span style="font-size:12px;color:var(--text-muted);margin-left:10px">3 members</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <div class="project-progress-wrap">
+              <div class="project-progress-label"><span>Progress</span><span style="color:var(--green);font-weight:700">70%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:70%;background:var(--green)"></div></div>
+            </div>
+            <div class="project-price"><i class="fas fa-dollar-sign"></i>850</div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card-top">
+            <div class="project-date"><i class="far fa-calendar"></i> 15/6/2022</div>
+            <div class="project-title">Mohamed Application</div>
+            <div class="project-desc">Mobile-first application design with focus on user experience and interface.</div>
+            <div class="project-tags">
+              <span class="project-tag">Design</span>
+            </div>
+            <div class="project-team">
+              <img src="image/team-01.png"><img src="image/team-02.png"><img src="image/team-03.png">
+              <span style="font-size:12px;color:var(--text-muted);margin-left:10px">3 members</span>
+            </div>
+          </div>
+          <div class="project-card-footer">
+            <div class="project-progress-wrap">
+              <div class="project-progress-label"><span>Progress</span><span style="color:var(--red);font-weight:700">40%</span></div>
+              <div class="progress-track"><div class="progress-fill" style="width:40%;background:var(--red)"></div></div>
+            </div>
+            <div class="project-price"><i class="fas fa-dollar-sign"></i>950</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

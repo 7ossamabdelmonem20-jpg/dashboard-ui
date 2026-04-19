@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plans | Hossam Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    .plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:960px}
+    .plan-card{
+      background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+      padding:28px 24px;position:relative;overflow:hidden;transition:all 0.3s;
+    }
+    .plan-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+    .plan-card.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+    .plan-card.featured::before{
+      content:'Most Popular';position:absolute;top:16px;right:-22px;
+      background:var(--accent);color:#fff;font-size:11px;font-weight:700;
+      padding:4px 32px;transform:rotate(35deg);letter-spacing:1px;
+    }
+    .plan-badge{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+    .plan-badge.free{background:rgba(34,197,94,0.15);color:var(--green)}
+    .plan-badge.pro{background:var(--accent-glow);color:var(--accent2)}
+    .plan-badge.business{background:rgba(245,158,11,0.15);color:var(--orange)}
+    .plan-name{font-size:22px;font-weight:800;margin-bottom:8px}
+    .plan-price{font-size:40px;font-weight:800;line-height:1;margin-bottom:4px}
+    .plan-price span{font-size:16px;color:var(--text-muted);font-weight:400}
+    .plan-desc{font-size:13px;color:var(--text-soft);margin-bottom:24px;line-height:1.6}
+    .plan-features{margin-bottom:28px}
+    .plan-feature{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:14px}
+    .plan-feature:last-child{border-bottom:none;padding-bottom:0}
+    .plan-feature i{font-size:13px;width:18px;text-align:center;flex-shrink:0}
+    .plan-feature.check i{color:var(--green)}
+    .plan-feature.cross{color:var(--text-muted)}
+    .plan-feature.cross i{color:var(--text-muted)}
+    .plan-btn{
+      width:100%;padding:12px;border-radius:10px;
+      font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;
+      transition:all 0.2s;border:none;
+    }
+    .plan-btn.outlined{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .plan-btn.outlined:hover{border-color:var(--accent);color:var(--accent2)}
+    .plan-btn.filled{background:linear-gradient(135deg,var(--accent),#7c3aed);color:#fff}
+    .plan-btn.filled:hover{transform:translateY(-1px);box-shadow:0 4px 16px var(--accent-glow)}
+    .plan-btn.gold{background:linear-gradient(135deg,var(--orange),#ef4444);color:#fff}
+    .plan-btn.gold:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(245,158,11,0.3)}
+    .current-badge{
+      display:inline-flex;align-items:center;gap:6px;
+      background:rgba(34,197,94,0.15);color:var(--green);
+      border:1px solid rgba(34,197,94,0.2);font-size:12px;font-weight:700;
+      padding:6px 14px;border-radius:8px;margin-bottom:20px;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">H</div>
+      <span class="brand-name">Hos<span>.</span>dev</span>
+    </div>
+    <div class="nav-label">Main</div>
+    <a href="index.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+    <a href="settings.html" class="nav-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+    <a href="profile.html" class="nav-item"><i class="fas fa-user-circle"></i><span>Profile</span></a>
+    <a href="projects.html" class="nav-item"><i class="fas fa-tasks"></i><span>Projects</span><span class="nav-badge">6</span></a>
+    <div class="nav-label" style="margin-top:20px">Content</div>
+    <a href="courses.html" class="nav-item"><i class="fab fa-discourse"></i><span>Courses</span></a>
+    <a href="friends.html" class="nav-item"><i class="fas fa-users"></i><span>Friends</span></a>
+    <a href="files.html" class="nav-item"><i class="far fa-file"></i><span>Files</span></a>
+    <a href="plans.html" class="nav-item active"><i class="fas fa-globe-americas"></i><span>Plans</span></a>
+    <div class="sidebar-bottom">
+      <div class="user-mini">
+        <img src="image/avatar.png" alt="Hossam">
+        <div class="user-mini-info"><span>Hossam</span><small>Developer</small></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="page-title">Plans</div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="search-wrap"><i class="fas fa-search"></i><input type="search" placeholder="Type a keyword…"></div>
+        <div class="topbar-actions">
+          <div class="icon-btn"><i class="fas fa-bell" style="font-size:14px"></i><span class="notif-dot"></span></div>
+          <div class="avatar-btn"><img src="image/avatar.png" alt=""></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div style="margin-bottom:32px">
+        <h2 style="font-size:24px;font-weight:800;margin-bottom:6px">Choose Your Plan</h2>
+        <p style="font-size:14px;color:var(--text-muted)">Upgrade to unlock more features and take your work to the next level.</p>
+      </div>
+
+      <div style="margin-bottom:24px">
+        <span class="current-badge"><i class="fas fa-check-circle"></i> You are currently on the Free plan</span>
+      </div>
+
+      <div class="plans-grid">
+        <!-- FREE -->
+        <div class="plan-card">
+          <span class="plan-badge free">Free</span>
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">$0<span> / month</span></div>
+          <div class="plan-desc">Perfect for getting started and exploring the platform.</div>
+          <div class="plan-features">
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Up to 5 Projects</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>500 MB Storage</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Basic Dashboard</span></div>
+            <div class="plan-feature cross"><i class="fas fa-times"></i><span>Priority Support</span></div>
+            <div class="plan-feature cross"><i class="fas fa-times"></i><span>Advanced Analytics</span></div>
+            <div class="plan-feature cross"><i class="fas fa-times"></i><span>Team Collaboration</span></div>
+          </div>
+          <button class="plan-btn outlined">Current Plan</button>
+        </div>
+
+        <!-- PRO -->
+        <div class="plan-card featured">
+          <span class="plan-badge pro">Pro</span>
+          <div class="plan-name">Professional</div>
+          <div class="plan-price">$29<span> / month</span></div>
+          <div class="plan-desc">Everything you need to grow your projects and collaborate with your team.</div>
+          <div class="plan-features">
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Unlimited Projects</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>10 GB Storage</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Advanced Dashboard</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Priority Support</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Advanced Analytics</span></div>
+            <div class="plan-feature cross"><i class="fas fa-times"></i><span>Team Collaboration</span></div>
+          </div>
+          <button class="plan-btn filled">Upgrade to Pro</button>
+        </div>
+
+        <!-- BUSINESS -->
+        <div class="plan-card">
+          <span class="plan-badge business">Business</span>
+          <div class="plan-name">Business</div>
+          <div class="plan-price">$79<span> / month</span></div>
+          <div class="plan-desc">Full power for growing teams and enterprise-level requirements.</div>
+          <div class="plan-features">
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Unlimited Projects</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>100 GB Storage</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Full Dashboard Suite</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>24/7 Priority Support</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Advanced Analytics</span></div>
+            <div class="plan-feature check"><i class="fas fa-check"></i><span>Team Collaboration</span></div>
+          </div>
+          <button class="plan-btn gold">Get Business</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
